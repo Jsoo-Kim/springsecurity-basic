@@ -1,0 +1,19 @@
+server:
+  servlet:
+    encoding:
+      force-response: true
+spring:
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/SpringSecurity
+    username: root
+
+jwt:
+  token:
+    secret: hello
