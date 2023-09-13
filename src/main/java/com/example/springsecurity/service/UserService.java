@@ -4,7 +4,7 @@ import com.example.springsecurity.domain.User;
 import com.example.springsecurity.exception.AppException;
 import com.example.springsecurity.exception.ErrorCode;
 import com.example.springsecurity.repository.UserRepository;
-import com.example.springsecurity.utils.JwtTokenUtil;
+import com.example.springsecurity.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,8 +17,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
     @Value("${jwt.token.secret}")
-    private String key;
-    private Long expireTimeMs = 1000 * 60 * 60l;
+    private String secretKey;
+    private Long expiredTimeMs = 1000 * 60 * 60l;
 
     public String join(String userName, String password) {
 
@@ -48,7 +48,7 @@ public class UserService {
             throw new AppException(ErrorCode.INVALID_PASSWORD, "패스워드를 잘못 입력했습니다.");
         }
 
-        String token = JwtTokenUtil.createToken(selectedUser.getUserName(), key, expireTimeMs);
+        String token = JwtUtil.createToken(selectedUser.getUserName(), secretKey, expiredTimeMs);
 
         // 앞에서 Exception 안 났으면 토큰 발행
         return token;
