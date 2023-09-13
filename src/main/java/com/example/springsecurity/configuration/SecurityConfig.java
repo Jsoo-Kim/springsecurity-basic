@@ -14,7 +14,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .httpBasic().disable() // HTTP 기본 인증을 비활성화. 웹 애플리케이션에 기본 인증 사용하지 않도록 설정
-                .csrf().disable()  // Cross-Site Requeset Forgery 보호 비활성화. CSRF 공격 방지하는 기능을 끔
+                .csrf().disable()  // Cross-Site Requeset Forgery 보호 기능 비활성화. CSRF 공격 방지하는 기능을 끔(기본적으로 활성화 돼 있는데 공격 발생 가능성 낮으면 사용자 편의를 위해 보호 비활성화 ex CSRF 토큰 입력 안 해도 됨)
                 .cors().and() // Cross-Origin Resource Sharing(다른 도메인에서의 요청을 허용 또는 제한하는 보안 기능) 설정 활성화 하고 그 다음 설정을 계속 함
                 .authorizeRequests() // 요청에 대한 권한 부여 설정을 시작
                 .antMatchers("/api/**").permitAll() // "/api/"로 시작하는 모든 요청을 모든 사용자에게 허용. 인증되지 않은 모든 사용자가 이 경로에 액세스 가능

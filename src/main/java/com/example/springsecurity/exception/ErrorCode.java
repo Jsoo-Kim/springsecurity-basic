@@ -9,7 +9,9 @@ import javax.persistence.Enumerated;
 @AllArgsConstructor
 @Getter
 public enum ErrorCode {
-    USERNAME_DUPLICATED(HttpStatus.CONFLICT, ""); // httpStatus, message 초기화
+    USERNAME_DUPLICATED(HttpStatus.CONFLICT, ""), // httpStatus, message 초기화
+    USERNAME_NOT_FOUND(HttpStatus.NOT_FOUND, ""),
+    INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "");
 
     private HttpStatus httpStatus;
     private String message;
